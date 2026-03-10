@@ -1,0 +1,237 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0gTQ4kMCsiAW",
+        "outputId": "4df01f7f-fffb-43cb-d449-12070c35624e"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "       a  b  c\n",
+            "one    1  2  3\n",
+            "two    4  5  6\n",
+            "three  7  8  9\n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "df=pd.DataFrame([[1,2,3],[4,5,6],[7,8,9]],\n",
+        "                index=['one','two','three'],\n",
+        "                columns=['a','b','c'])\n",
+        "print(df)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Taking the input from Dataframe and storing in the Excel file\n",
+        "print(\"Taking the input from Dataframe and storing in the Excel file\")\n",
+        "df.to_excel('d:\\pandas_to_excel.xlsx',sheet_name='new_sheet_name')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "n7YnDhG_tXLW",
+        "outputId": "81f19312-7838-4f2a-e866-a31e0862883c"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "<>:3: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:3: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "/tmp/ipython-input-2261669984.py:3: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  df.to_excel('d:\\pandas_to_excel.xlsx',sheet_name='new_sheet_name')\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Taking the input from Dataframe and storing in the Excel file\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#second Dataframe input to another Excel file\n",
+        "d=pd.DataFrame([[110,210,310],[12,220,320],[310,320,330]],\n",
+        "               index=['four','five','six'],\n",
+        "              columns=['a','b','c'])\n",
+        "d.to_excel('d:\\pandas_to_excell.xlsx',sheet_name='new_sheet_name')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2dA8gpMftauA",
+        "outputId": "4e2bc21f-ce85-4693-fbb6-4ec487576fb2"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "<>:5: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:5: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "/tmp/ipython-input-2274835733.py:5: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  d.to_excel('d:\\pandas_to_excell.xlsx',sheet_name='new_sheet_name')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Merging two Excel files input into third file\n",
+        "x=pd.read_excel('d:\\pandas_to_excel.xlsx')\n",
+        "y=pd.read_excel('d:\\pandas_to_excell.xlsx')\n",
+        "z=pd.concat([x,y])\n",
+        "z.to_excel('d:\\pandas_to_excel3.xlsx')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BnetufRQtecK",
+        "outputId": "b0271c97-3e09-419e-a3da-230ac64ee684"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "<>:2: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:3: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:5: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:2: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:3: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:5: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "/tmp/ipython-input-526567678.py:2: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  x=pd.read_excel('d:\\pandas_to_excel.xlsx')\n",
+            "/tmp/ipython-input-526567678.py:3: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  y=pd.read_excel('d:\\pandas_to_excell.xlsx')\n",
+            "/tmp/ipython-input-526567678.py:5: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  z.to_excel('d:\\pandas_to_excel3.xlsx')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#sorting the column values\n",
+        "df=z.sort_values([\"a\"])\n",
+        "print(df)\n",
+        "df.to_excel('d:\\pandas_to_excel4.xlsx')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "GhBelNF-th8h",
+        "outputId": "95d09ebe-064d-4b26-bc37-ebbb277a256c"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  Unnamed: 0    a    b    c\n",
+            "0        one    1    2    3\n",
+            "1        two    4    5    6\n",
+            "2      three    7    8    9\n",
+            "1       five   12  220  320\n",
+            "0       four  110  210  310\n",
+            "2        six  310  320  330\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "<>:4: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:4: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "/tmp/ipython-input-663832531.py:4: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  df.to_excel('d:\\pandas_to_excel4.xlsx')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df=pd.read_excel('d:\\pandas_to_excel4.xlsx')\n",
+        "print(df)\n",
+        "print(list(df))\n",
+        "print(format(len(df)))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "o7XnGWpotksj",
+        "outputId": "a811c641-ba8a-44dd-a2f8-f874727d4501"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "   Unnamed: 0.1 Unnamed: 0    a    b    c\n",
+            "0             0        one    1    2    3\n",
+            "1             1        two    4    5    6\n",
+            "2             2      three    7    8    9\n",
+            "3             1       five   12  220  320\n",
+            "4             0       four  110  210  310\n",
+            "5             2        six  310  320  330\n",
+            "['Unnamed: 0.1', 'Unnamed: 0', 'a', 'b', 'c']\n",
+            "6\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "<>:1: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "<>:1: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "/tmp/ipython-input-512789069.py:1: SyntaxWarning: invalid escape sequence '\\p'\n",
+            "  df=pd.read_excel('d:\\pandas_to_excel4.xlsx')\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
